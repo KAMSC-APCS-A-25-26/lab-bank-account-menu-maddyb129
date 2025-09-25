@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class BankAccountMenu {
     public static void main(String[] args) {
@@ -23,15 +24,16 @@ public class BankAccountMenu {
             System.out.println("4. Exit");
             System.out.print("Enter your choice:  ");
             int choice = sc.nextInt();
-            double amount = sc.nextDouble();
             switch(choice)
             {
                 case 1:
-                    System.out.println("Enter amount to add: ");
+                    System.out.print("Enter amount to add:  ");
+                    double amount = sc.nextDouble();
                     if(amount >= 1)
                     {
                         balance = balance + amount;
-                        System.out.print("Added " + "$" + balance);
+                        DecimalFormat roundedBalance = new DecimalFormat ("0.00");
+                        System.out.print("New balance: " + "$" + roundedBalance.format(balance));
                     }
                     else
                     {
@@ -39,12 +41,13 @@ public class BankAccountMenu {
                     }
                     break;
                 case 2:
-                    System.out.println("Enter amount to withdraw:  ");
-
-                    if(amount >= 1 && amount >= balance)
+                    System.out.print("Enter amount to withdraw:  ");
+                    double withdraw = sc.nextDouble();
+                    if(withdraw >= 0 && withdraw <= balance)
                     {
-                        balance = balance - amount;
-                        System.out.print("Withdrew " + "$" + balance);
+                        balance -=withdraw;
+                        DecimalFormat roundedBalance = new DecimalFormat ("0.00");
+                        System.out.print("New balance:" + "$" + roundedBalance.format(balance));
                     }
                     else
                     {
@@ -52,12 +55,12 @@ public class BankAccountMenu {
                     }
                     break;
                 case 3:
-                    System.out.print(balance);
+                    DecimalFormat roundedBalance = new DecimalFormat ("0.00");
+                    System.out.print(roundedBalance.format(balance));
                     break;
                 case 4:
                     System.out.print("Goodbye!");
                     running = false;
-                    break;
             }
         }
     }
