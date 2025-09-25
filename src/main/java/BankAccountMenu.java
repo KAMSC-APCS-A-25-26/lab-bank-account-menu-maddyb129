@@ -56,7 +56,7 @@ public class BankAccountMenu {
                     break;
                 case 3:
                     DecimalFormat roundedBalance = new DecimalFormat ("0.00");
-                    System.out.print(roundedBalance.format(balance));
+                    System.out.print("$" + roundedBalance.format(balance));
                     break;
                 case 4:
                     System.out.print("Goodbye!");
